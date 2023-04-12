@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 
+; // import your Redux actions
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
 
 // import LoginScreen from './screens/LoginScreen';
-import MainContainer from './navigation/MainContainer/MainContainer';
+import Launcher from './Launcher';
 
 export default function App() {
 
   return (
     <Provider store={store}>
-      < MainContainer />
+      < Launcher />
     </Provider>
 
 

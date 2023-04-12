@@ -13,8 +13,10 @@ import CategoryCard from '../CategoryCard/CategoryCard';
 
 const CategoryPanel = () => {
 
-    const categories = useSelector((state) => state.categories.categories);
     const dispatch = useDispatch();
+
+    const categories = useSelector((state) => state.categories.categories);
+    const recentSheet = useSelector((state) => state.recentSheet.recentSheet);
 
     const handleAddCategory = (newCategory) => {
         dispatch(add(newCategory));
@@ -28,42 +30,36 @@ const CategoryPanel = () => {
         dispatch(remove(categoryId));
     };
 
-    //variables
-    // let currentMonth = 'Apríl' //current month should be drilled from the actuall moth
-    let totalAmount = 0; // should be calculated
-    let percentage = 32; // should be calculated
-
     const categoryCards = categories.map((category, index) => (
-        totalAmount += category.total,
         <CategoryCard
             key={category.id}
             name={category.name}
             total={category.total}
             color={category.color}
-        // isLast={index === categories.length - 1}
+            isLast={index === categories.length - 1}
         />
     ));
 
     return (
-        <View style={[styles.mainContainer, gStyles.cardContainer]}>
+        <View style={gStyles.cardContainer}>
             <Text style={[gStyles.titleFont, styles.overview]}>Tento Mesiac</Text>
             <View style={gStyles.card}>
                 <View style={[styles.topContainer]}>
                     <View style={[styles.topLeftContainer]}>
                         <Text style={[gStyles.grayFont, styles.totalText]}>Celkom</Text>
-                        <Text style={[styles.totalNumber]}>{totalAmount}€</Text>
+                        <Text style={[styles.totalNumber]}>{recentSheet.total}€</Text>
                     </View>
                     <View style={[styles.topRightContainer]}>
-                        <AntDesign name='arrowup' size={24} color="#8a7e72" ></AntDesign>
-                        <Text style={[gStyles.grayFont]}>{percentage}% ako minulý mesiac </Text>
+                        <AntDesign name='arrowup' size={24} color="#C6C4C4" ></AntDesign>
+                        <Text style={[gStyles.grayFont]}>{recentSheet.lastMonthPercentage}% ako minulý mesiac </Text>
                     </View>
                 </View>
-                <View>
+                <View style={styles.categoryContainer}>
                     {categoryCards}
                 </View>
-                <View style={[styles.bottomBorder]}>
+                {/* <View style={[styles.bottomBorder]}>
                     <Button title='Pridať Kategóriu'></Button>
-                </View>
+                </View> */}
             </View>
         </View>
     );

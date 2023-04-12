@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,17 +15,16 @@ const CategoryCard = ({ name, color, total, isLast }) => {
     let bottomBorderStyle = isLast ? {} : styles.bottomBorder; // If the card is last in the list then bottom border should not be displayed
 
     const handleClick = () => {
-        navigation.navigate('Category');
+        navigation.navigate('ItemScreen', { headerTitle: `${name}` });
     };
 
     return (
-        <TouchableOpacity style={[styles.mainContainer, bottomBorderStyle]} onPress={handleClick}>
+        <TouchableOpacity style={[styles.mainContainer]} onPress={handleClick}>
             <View style={[styles.leftContainer]}>
-                <View style={[styles.badge, { backgroundColor: color }]}>
-                    <Text style={[gStyles.defaultFont]}>{name}</Text>
-                </View>
+                <View style={[styles.badge, { backgroundColor: color }]}></View>
             </View>
-            <View style={[styles.rightContainer]}>
+            <View style={[styles.rightContainer, bottomBorderStyle]}>
+                <Text style={[gStyles.defaultFont, styles.categoryName]}>{name}</Text>
                 <Text style={[gStyles.defaultFont, styles.firstChild]}> <Text style={styles.amount}>{total}</Text> €</Text>
                 <AntDesign name="right" size={20} color="white" />
             </View>

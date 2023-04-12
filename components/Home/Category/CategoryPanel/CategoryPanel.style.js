@@ -3,17 +3,8 @@ import { StyleSheet } from "react-native";
 
 
 const styles = StyleSheet.create({
-    mainContainer: {
-        // paddingTop: 30,
-        // paddingHorizontal: 10,
-    },
     overview: {
         paddingHorizontal: 10,
-        paddingVertical: 5,
-    },
-    container: {
-        backgroundColor: '#1c1c1e',
-        borderRadius: 20,
         paddingVertical: 5,
     },
     topContainer: {
@@ -35,6 +26,9 @@ const styles = StyleSheet.create({
     totalNumber: {
         fontSize: 42,
         color: '#fefffe',
+    },
+    categoryContainer: {
+        marginBottom: 15,
     },
 
 });

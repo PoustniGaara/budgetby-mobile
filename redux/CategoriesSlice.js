@@ -5,7 +5,7 @@ const initialState = {
     categories: [],
 };
 
-export const categoriesSlice = createSlice({
+export const CategoriesSlice = createSlice({
     name: 'categories',
     initialState,
     reducers: {
@@ -30,11 +30,11 @@ export const categoriesSlice = createSlice({
     },
 });
 
-export const { setCategories, add, update, remove } = categoriesSlice.actions;
+export const { setCategories, add, update, remove } = CategoriesSlice.actions;
 
 export const fetchCategories = () => async (dispatch) => {
     const categories = await getCategories();
     dispatch(setCategories(categories));
 };
 
-export default categoriesSlice.reducer;
+export default CategoriesSlice.reducer;

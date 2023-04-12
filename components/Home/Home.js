@@ -14,7 +14,7 @@ import styles from './Home.style';
 
 const Home = () => {
     return (
-        <ScrollView style={[gStyles.darkTheme, styles.container]}>
+        <ScrollView style={[gStyles.darkTheme, styles.container]} >
             {/* <MonthEditor /> */}
             <CategoryPanel />
             <Overview />
