@@ -17,7 +17,7 @@ const Home = () => {
         <ScrollView style={[gStyles.darkTheme, styles.container]} >
             {/* <MonthEditor /> */}
             <CategoryPanel />
-            <Overview />
+            {/* <Overview /> */}
         </ScrollView>
 
     );

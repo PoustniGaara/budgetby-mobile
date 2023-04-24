@@ -43,6 +43,11 @@ const styles = {
     fontSize: 20,
     fontWeight: 'bold',
   },
+  disabledBoldFont: {
+    color: '#717075',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
   bigBoldFont: {
     fontSize: 40,
     fontWeight: 'bold',
