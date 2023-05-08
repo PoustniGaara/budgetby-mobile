@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCategories, addCategory, updateCategory, deleteCategory } from '../storage_functions/CategoriesStorage';
 
 const initialState = {
     categories: [],
+    recentCategories: [],
 };
 
 export const CategoriesSlice = createSlice({
@@ -11,6 +11,10 @@ export const CategoriesSlice = createSlice({
     reducers: {
         setCategories: (state, action) => {
             state.categories = action.payload;
+        },
+        setRecentCategories: (state, action) => {
+            state.recentCategories = action.payload;
+
         },
         add: (state, action) => {
             addCategory(action.payload);
@@ -30,11 +34,11 @@ export const CategoriesSlice = createSlice({
     },
 });
 
-export const { setCategories, add, update, remove } = CategoriesSlice.actions;
+export const { setCategories, setRecentCategories, add, update, remove } = CategoriesSlice.actions;
 
-export const fetchCategories = () => async (dispatch) => {
-    const categories = await getCategories();
-    dispatch(setCategories(categories));
-};
+// export const fetchCategories = () => async (dispatch) => {
+//     const categories = await getCategories();
+//     dispatch(setCategories(categories));
+// };
 
 export default CategoriesSlice.reducer;

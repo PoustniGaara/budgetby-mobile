@@ -15,28 +15,22 @@ const CategoryPanel = () => {
 
     const dispatch = useDispatch();
 
-    const categories = useSelector((state) => state.categories.categories);
-    const recentSheet = useSelector((state) => state.recentSheet.recentSheet);
+    // const recentCategories = useSelector((state) => state.categories.recentCategories);
+    // recentCategories.forEach(element => {
+    //     console.log(element);
+    // });
 
-    const handleAddCategory = (newCategory) => {
-        dispatch(add(newCategory));
-    };
+    const currentSheet = useSelector((state) => state.sheets.currentSheet);
 
-    const handleUpdateCategory = (updatedCategory) => {
-        dispatch(update(updatedCategory));
-    };
+    const recentCategories = currentSheet.categories;
 
-    const handleDeleteCategory = (categoryId) => {
-        dispatch(remove(categoryId));
-    };
+    const lastMonthPercentage = 0;
 
-    const categoryCards = categories.map((category, index) => (
+
+    const categoryCards = recentCategories.map((category, index) => (
         <CategoryCard
-            key={category.id}
-            name={category.name}
-            total={category.total}
-            color={category.color}
-            isLast={index === categories.length - 1}
+            category={category}
+            isLast={index === recentCategories.length - 1}
         />
     ));
 
@@ -47,11 +41,11 @@ const CategoryPanel = () => {
                 <View style={[styles.topContainer]}>
                     <View style={[styles.topLeftContainer]}>
                         <Text style={[gStyles.grayFont, styles.totalText]}>Celkom</Text>
-                        <Text style={[styles.totalNumber]}>{recentSheet.total}€</Text>
+                        <Text style={[styles.totalNumber]}>{currentSheet.total}€</Text>
                     </View>
                     <View style={[styles.topRightContainer]}>
                         <AntDesign name='arrowup' size={24} color="#C6C4C4" ></AntDesign>
-                        <Text style={[gStyles.grayFont]}>{recentSheet.lastMonthPercentage}% ako minulý mesiac </Text>
+                        <Text style={[gStyles.grayFont]}>{lastMonthPercentage}% ako minulý mesiac </Text>
                     </View>
                 </View>
                 <View style={styles.categoryContainer}>

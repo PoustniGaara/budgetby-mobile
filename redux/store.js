@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import categoriesReducer from './CategoriesSlice';
-import recentSheetSlice from './SheetsSlice';
+import categoriesSlice from './CategoriesSlice';
+import sheetSlice from './SheetsSlice';
+import itemsSlice from './ItemsSlice';
 
 export default configureStore({
     reducer: {
-        categories: categoriesReducer,
-        recentSheet: recentSheetSlice,
+        categories: categoriesSlice,
+        sheets: sheetSlice,
+        items: itemsSlice,
     },
 });

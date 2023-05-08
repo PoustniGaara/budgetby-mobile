@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import styles from "./CategoryCard.style";
 import gStyles from "../../../../globalStyles";
 
-const CategoryCard = ({ name, color, total, isLast }) => {
+const CategoryCard = ({ category, isLast }) => {
 
     //consts
     const navigation = useNavigation();
@@ -15,17 +15,19 @@ const CategoryCard = ({ name, color, total, isLast }) => {
     let bottomBorderStyle = isLast ? {} : styles.bottomBorder; // If the card is last in the list then bottom border should not be displayed
 
     const handleClick = () => {
-        navigation.navigate('ItemScreen', { headerTitle: `${name}` });
+        navigation.navigate('ItemScreen', { parentCategory: category });
     };
+
+    console.log(`skusam ${category}`);
 
     return (
         <TouchableOpacity style={[styles.mainContainer]} onPress={handleClick}>
             <View style={[styles.leftContainer]}>
-                <View style={[styles.badge, { backgroundColor: color }]}></View>
+                <View style={[styles.badge, { backgroundColor: category.color }]}></View>
             </View>
             <View style={[styles.rightContainer, bottomBorderStyle]}>
-                <Text style={[gStyles.defaultFont, styles.categoryName]}>{name}</Text>
-                <Text style={[gStyles.defaultFont, styles.firstChild]}> <Text style={styles.amount}>{total}</Text> €</Text>
+                <Text style={[gStyles.defaultFont, styles.categoryName]}>{category.name}</Text>
+                <Text style={[gStyles.defaultFont, styles.firstChild]}> <Text style={styles.amount}>{category.total}</Text> €</Text>
                 <AntDesign name="right" size={20} color="white" />
             </View>
         </TouchableOpacity>

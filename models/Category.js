@@ -1,8 +1,10 @@
-export function createCategory(id, name, items, sheetId) {
+export function createCategory(id, name, color, sheetId, items = [], total = 0) {
     return {
         id,
         name,
+        color,
         items,
-        sheetId
+        sheetId,
+        total
     };
 }

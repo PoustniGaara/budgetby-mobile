@@ -1,25 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getRecentSheet } from '../storage_functions/SheetsStorage';
 
-const recentSheetInitialState = {
-    recentSheet: null
+const initialState = {
+    currentSheet: null,
+    sheets: []
 };
 
-export const recentSheetSlice = createSlice({
-    name: 'recentSheet',
-    initialState: recentSheetInitialState,
+export const sheetSlice = createSlice({
+    name: 'sheets',
+    initialState: initialState,
     reducers: {
-        setRecentSheet: (state, action) => {
-            state.recentSheet = action.payload;
+        setCurrentSheet: (state, action) => {
+            state.currentSheet = action.payload;
+        },
+        setSheets: (state, action) => {
+            state.sheets = action.payload;
         },
     },
 });
 
-export const { setRecentSheet } = recentSheetSlice.actions;
+export const { setCurrentSheet, setSheets } = sheetSlice.actions;
 
-export const fetchRecentSheet = () => async (dispatch) => {
-    const sheet = await getRecentSheet();
-    dispatch(setRecentSheet(sheet));
-};
-
-export default recentSheetSlice.reducer;
+export default sheetSlice.reducer;

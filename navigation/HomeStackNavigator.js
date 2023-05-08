@@ -7,7 +7,6 @@ import NameModal from '../components/PurchaseScreen/AddPurchaseModal/NameModal/N
 import QuantityModal from '../components/PurchaseScreen/AddPurchaseModal/QuantityModal/QuantityModal';
 
 import MainContainer from './MainContainer/MainContainer';
-import Home from '../components/Home/Home';
 import ItemScreen from '../components/ItemScreen/ItemScreen';
 import PurchaseScreen from '../components/PurchaseScreen/PurchaseScreen';
 import { NavigationContainer } from '@react-navigation/native';
