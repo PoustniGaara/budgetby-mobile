@@ -2,13 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     recentItems: [],
-    items: []
+    items: [],
+    currentItem: null
 };
 
 export const itemsSlice = createSlice({
     name: 'items',
     initialState: initialState,
     reducers: {
+        setCurrentItem: (state, action) => {
+            state.currentItem = action.payload;
+        },
         setRecentItems: (state, action) => {
             state.recentItems = action.payload;
         },
@@ -18,11 +22,6 @@ export const itemsSlice = createSlice({
     },
 });
 
-export const { setRecentItems, setItems } = itemsSlice.actions;
-
-// export const fetchRecentSheet = () => async (dispatch) => {
-//     const sheet = await getRecentSheet();
-//     dispatch(setRecentSheet(sheet));
-// };
+export const { setRecentItems, setItems, setCurrentItem } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

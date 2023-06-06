@@ -9,6 +9,7 @@ import getDatabase from "./persistance/local_persistance/Database";
 
 //Import Default Data
 import { getSlovakDefaultSheetData, getSlovakDefaultItemsData, getSlovakDefaultCategoriesData } from './assets/database/slovak_default_data';
+import { getEnglishDefaultSheetData, getEnglishDefaultItemsData, getEnglishDefaultCategoriesData } from './assets/database/english_default_data';
 
 import HomeStackNavigator from './navigation/HomeStackNavigator';
 import { createSheetTableAsync, findAllSheetsAsync, saveSheetAndGetIdAsync, isTableCreatedAsync, deleteAllSheetsAsync } from './persistance/local_persistance/SheetDAO';
@@ -35,20 +36,6 @@ export default function Launcher() {
 
 
     const loadDataWithCheck = async () => {
-
-        // console.log("1");
-        // //for development purposes delete all sheets... in production this need to be deleted
-        // await deleteAllSheetsAsync();
-        // console.log("2");
-
-        // //I also need to add the same thing for categories
-        // await deleteAllCategoriesAsync();
-        // //Delete all items for debug purposes
-        // console.log("3");
-
-        // await deleteAllItemsAsync();
-        // console.log("4");
-
 
         console.log('loading data with check');
         try {
@@ -132,19 +119,19 @@ export default function Launcher() {
         try {
 
             //Insert sheet
-            let sheet = await getSlovakDefaultSheetData();
+            let sheet = await getEnglishDefaultSheetData();
             console.log(`Inserting default sheet:${sheet}`);
             let sheetId = await saveSheetAndGetIdAsync(sheet);
             console.log(`Default sheet inserted with id:${sheetId}`);
 
             //Insert categories
-            let categories = await getSlovakDefaultCategoriesData(sheetId);
+            let categories = await getEnglishDefaultCategoriesData(sheetId);
             console.log(`Inserting default categories:${categories}`);
             let categoryIds = await saveCategoriesAndGetIdsAsync(categories);
             console.log(`Default categories inserted with ids:${categoryIds}`);
 
             //insert Items
-            let items = getSlovakDefaultItemsData(categoryIds);
+            let items = getEnglishDefaultItemsData(categoryIds);
             console.log(`Inserting default items:${items}`);
             let itemIds = await saveItemsAndGetIdsAsync(items);
             console.log(`Default items inserted with ids:${itemIds}`);
@@ -166,62 +153,3 @@ export default function Launcher() {
         </>
     );
 }
-
-
-//This is deprecated code that I can use in case tables would need to be initialized despite of predefined DB
-
-// function getDatabaseStructureAsync() {
-//     return new Promise((resolve, reject) => {
-//         getDatabase().then((db) => {
-//             db.transaction((tx) => {
-//                 tx.executeSql(
-//                     "SELECT name FROM sqlite_master WHERE type='table';",
-//                     [],
-//                     (_, result) => {
-//                         const tableNames = result.rows._array.map(row => row.name);
-//                         resolve(tableNames);
-//                     },
-//                     (_, error) => {
-//                         reject(error);
-//                     }
-//                 );
-//             });
-//         }).catch((error) => {
-//             reject(error);
-//         });
-//     });
-// }
-
-
-// const initializeTables = async () => {
-//     //Create Sheets table
-//     try {
-//         console.log('creating Sheets table');
-//         await createSheetTableAsync();
-//         console.log('Sheets table created');
-//         const isSheetsCreated = await isTableCreatedAsync('Sheets');
-//         console.log(isSheetsCreated);
-//     }
-//     catch (error) {
-//         console.log("Error initializing Sheets table:", error);
-//     }
-//     // Create Categories table
-//     try {
-//         console.log('creating Categories table');
-//         await createCategoryTableAsync();
-
-//         const isTableCreated = await isCategoryTableCreatedAsync();
-//         console.log(isTableCreated);
-//         console.log('Categories table created')
-
-//         const dbData = await getDatabaseStructureAsync();
-//         dbData.forEach(element => {
-//             console.log(`dbData ${element}`);
-
-//         });
-
-//     } catch (error) {
-//         console.log("Error initializing Categories table:", error);
-//     }
-// };
-

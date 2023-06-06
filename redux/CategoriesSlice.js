@@ -3,12 +3,16 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     categories: [],
     recentCategories: [],
+    currentCategory: null
 };
 
 export const CategoriesSlice = createSlice({
     name: 'categories',
     initialState,
     reducers: {
+        setCurrentCategory: (state, action) => {
+            state.currentCategory = action.payload;
+        },
         setCategories: (state, action) => {
             state.categories = action.payload;
         },
@@ -34,11 +38,6 @@ export const CategoriesSlice = createSlice({
     },
 });
 
-export const { setCategories, setRecentCategories, add, update, remove } = CategoriesSlice.actions;
-
-// export const fetchCategories = () => async (dispatch) => {
-//     const categories = await getCategories();
-//     dispatch(setCategories(categories));
-// };
+export const { setCategories, setRecentCategories, add, update, remove, setCurrentCategory } = CategoriesSlice.actions;
 
 export default CategoriesSlice.reducer;

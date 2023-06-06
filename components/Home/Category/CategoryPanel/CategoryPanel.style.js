@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         paddingTop: 10,
     },
     totalNumber: {
-        fontSize: 42,
+        fontSize: 34,
         color: '#fefffe',
     },
     categoryContainer: {

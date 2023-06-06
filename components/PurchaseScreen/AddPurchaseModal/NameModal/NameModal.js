@@ -7,31 +7,29 @@ import gStyles from '../../../../globalStyles';
 import globalColors from '../../../../globalColors';
 import { useNavigation } from '@react-navigation/native';
 
-export default function NameModal() {
+export default function NameModal({ onNavigate, productName, setProductName }) {
 
     const navigation = useNavigation();
 
-    const [name, setName] = useState('');
+    // const [name, setName] = useState('');
 
     const buttonPressed = () => {
-        navigation.navigate('QuantityModal');
+        onNavigate('quantityModal');
     }
 
     return (
         <View style={styles.mainContainer} >
             <ScrollView style={styles.scrollContainer} >
                 <View style={styles.contentContainer} >
-
-                    <Text style={[gStyles.bigBoldFont, styles.titleText]}>Názov produktu?</Text>
+                    <Text style={[gStyles.bigBoldFont, styles.titleText]}>Product Name?</Text>
                     <View style={styles.inputContainer}>
-                        <TextInput placeholder='Názov' style={[gStyles.addPurchaseFont, styles.textInput]} onChangeText={setName} />
+                        <TextInput placeholder='Name' style={[gStyles.addPurchaseFont, styles.textInput]} onChangeText={setProductName} />
                     </View>
                 </View>
-
             </ScrollView>
             <View style={[styles.modalNavigationFooter]}>
-                <TouchableOpacity style={[styles.footerButton, name ? styles.enabledFooterButtonColor : styles.disabledFooterButtonColor]} disabled={!name} onPress={buttonPressed} >
-                    <Text style={name ? gStyles.defaultBoldFont : gStyles.disabledBoldFont} >Ďalej</Text>
+                <TouchableOpacity style={[styles.footerButton, productName ? styles.enabledFooterButtonColor : styles.disabledFooterButtonColor]} disabled={!productName} onPress={buttonPressed} >
+                    <Text style={productName ? gStyles.defaultBoldFont : gStyles.disabledBoldFont} >Next</Text>
                 </TouchableOpacity>
             </View>
         </View>

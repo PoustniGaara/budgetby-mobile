@@ -18,8 +18,6 @@ const CategoryCard = ({ category, isLast }) => {
         navigation.navigate('ItemScreen', { parentCategory: category });
     };
 
-    console.log(`skusam ${category}`);
-
     return (
         <TouchableOpacity style={[styles.mainContainer]} onPress={handleClick}>
             <View style={[styles.leftContainer]}>
@@ -27,7 +25,7 @@ const CategoryCard = ({ category, isLast }) => {
             </View>
             <View style={[styles.rightContainer, bottomBorderStyle]}>
                 <Text style={[gStyles.defaultFont, styles.categoryName]}>{category.name}</Text>
-                <Text style={[gStyles.defaultFont, styles.firstChild]}> <Text style={styles.amount}>{category.total}</Text> €</Text>
+                <Text style={[gStyles.defaultFont, styles.firstChild,]}> <Text style={styles.amount}>{category.total}</Text> DKK</Text>
                 <AntDesign name="right" size={20} color="white" />
             </View>
         </TouchableOpacity>

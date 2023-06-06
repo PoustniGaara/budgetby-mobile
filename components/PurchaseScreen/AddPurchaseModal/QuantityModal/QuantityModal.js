@@ -6,12 +6,12 @@ import styles from './QuantityModal.style';
 import gStyles from '../../../../globalStyles';
 import globalColors from '../../../../globalColors';
 
-export default function QuantityModal() {
+export default function QuantityModal({ onNavigate, setProductQuantity, productQuantity }) {
 
     const [name, setName] = useState('');
 
     const buttonPressed = () => {
-
+        onNavigate('priceModal');
     }
 
     return (
@@ -19,16 +19,16 @@ export default function QuantityModal() {
             <ScrollView style={styles.scrollContainer} >
                 <View style={styles.contentContainer} >
 
-                    <Text style={[gStyles.bigBoldFont, styles.titleText]}>QuantityModal</Text>
+                    <Text style={[gStyles.bigBoldFont, styles.titleText]}>Quantity?</Text>
                     <View style={styles.inputContainer}>
-                        <TextInput placeholder='Názov' style={[gStyles.addPurchaseFont, styles.textInput]} onChangeText={setName} />
+                        <TextInput placeholder='0' style={[gStyles.addPurchaseFont, styles.textInput]} keyboardType='numeric' onChangeText={setProductQuantity} />
                     </View>
                 </View>
 
             </ScrollView>
             <View style={[styles.modalNavigationFooter]}>
-                <TouchableOpacity style={[styles.footerButton, name ? styles.enabledFooterButtonColor : styles.disabledFooterButtonColor]} disabled={!name} onPress={buttonPressed} >
-                    <Text style={name ? gStyles.defaultBoldFont : gStyles.disabledBoldFont} >Ďalej</Text>
+                <TouchableOpacity style={[styles.footerButton, productQuantity ? styles.enabledFooterButtonColor : styles.disabledFooterButtonColor]} disabled={!productQuantity} onPress={buttonPressed} >
+                    <Text style={productQuantity ? gStyles.defaultBoldFont : gStyles.disabledBoldFont} >Next</Text>
                 </TouchableOpacity>
             </View>
         </View>

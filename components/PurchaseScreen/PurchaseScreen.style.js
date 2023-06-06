@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     },
     noPurchasesText: {
         paddingHorizontal: 10,
-        marginVertical: 30,
+        marginVertical: 250,
         alignSelf: 'center',
     },
 

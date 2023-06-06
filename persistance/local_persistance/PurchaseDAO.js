@@ -68,13 +68,47 @@ export async function savePurchasesAndGetIdsAsync(purchases) {
 
       savedPurchaseIds.push(result.insertId);
     }
-
     return savedPurchaseIds;
   } catch (error) {
     console.error("Error saving purchases:", error);
     throw error;
   }
 }
+
+export async function savePurchaseAndGetIdAsync(purchase) {
+  try {
+    const db = await getDatabase();
+    let savedPurchaseId;
+
+    const result = await new Promise((resolve, reject) => {
+      db.transaction(
+        (tx) => {
+          tx.executeSql(
+            "INSERT INTO Purchases (purchase_product, purchase_amount, purchase_total, purchase_date, purchase_item, purchase_supplier) VALUES (?, ?, ?, ?, ?, ?);",
+            [purchase.productName, purchase.amount, purchase.total, purchase.date, purchase.itemId, purchase.supplierId],
+            (_, result) => {
+              resolve(result);
+            },
+            (_, error) => {
+              reject(error);
+            }
+          );
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+
+    savedPurchaseId = result.insertId;
+
+    return savedPurchaseId;
+  } catch (error) {
+    console.error("Error saving purchase:", error);
+    throw error;
+  }
+}
+
 
 
 export const deleteAllPurchasesAsync = async () => {

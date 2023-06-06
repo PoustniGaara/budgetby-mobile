@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.borderGrey,
     },
     firstChild: {
-        flex: 0.5,
+        flex: 0.7,
         justifyContent: 'center',
     },
 });
